@@ -1,26 +1,19 @@
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById('goButton').addEventListener('click', function() {
-        var stationValue = document.getElementById('stationDropdown').value;
-        var mechanicValue = document.getElementById('mechanicDropdown').value;
+document.getElementById("goButton").addEventListener("click", function () {
+    var selectedMechanic = document.getElementById("mechanicDropdown").value;
+    var selectedStation = document.getElementById("stationDropdown").value;
 
-        // Sprawdź, czy wybrano stację "D"
-        if (stationValue === "D") {
-            // Pobierz link
-            var link = document.createElement('a');
-            link.href = "https://web.miniextensions.com/Vp81zD5sRnZVQZ2lAgLJ";
+    selectedMechanic = selectedMechanic.toUpperCase().replace(" ", "_");
+    selectedStation = selectedStation.toUpperCase().replace(" ", "_");
 
-            // Dodaj wartość mechanic do linku
-            var selectedMechanic = encodeURIComponent(mechanicValue);
-            link.href += "?prefill_Mechanic=" + selectedMechanic;
+    var baseRedirectURL = "https://web.miniextensions.com/Vp81zD5sRnZVQZ2lAgLJ?prefill_Mechanic=" + selectedMechanic;
 
-            // Otwórz link
-            link.target = "_blank"; // Otwórz w nowym oknie
-            document.body.appendChild(link); // Dodaj link do body
-            link.click(); // Kliknij link
-            document.body.removeChild(link); // Usuń link z body
-        } else {
-            // Komunikat dla użytkownika, gdy wybrano inną stację
-            alert("Wybierz stację D, aby kontynuować.");
-        }
-    });
+    var redirectionURLs = {
+        "D": baseRedirectURL + "&prefill_Station=" + selectedStation,
+    };
+
+    if (redirectionURLs[selectedStation]) {
+        window.location.href = redirectionURLs[selectedStation];
+    } else {
+        alert("Please select both a mechanic and a station before clicking Go.");
+    }
 });
