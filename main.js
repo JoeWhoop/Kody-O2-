@@ -8,6 +8,7 @@ document.getElementById("goButton").addEventListener("click", function () {
     var baseRedirectURL = "https://web.miniextensions.com/Vp81zD5sRnZVQZ2lAgLJ?prefill_Mechanic=" + selectedMechanic;
 
     var redirectionURLs = {
+        "D-1": baseRedirectURL + "&prefill_Station=" + selectedStation,
         "D0": baseRedirectURL + "&prefill_Station=" + selectedStation,
         "D1": baseRedirectURL + "&prefill_Station=" + selectedStation,
         "D2": baseRedirectURL + "&prefill_Station=" + selectedStation,
